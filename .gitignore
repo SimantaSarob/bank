@@ -2,3 +2,4 @@
 bank.db
 name.txt
 password.txt
+__pycache__
