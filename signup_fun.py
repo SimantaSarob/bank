@@ -9,7 +9,7 @@ def signup(name, password, dob, amount):
     conn = sqlite3.connect('bank.db')
     cursor = conn.cursor()  
     cursor.execute("INSERT INTO customer (name,password,dob,amount) VALUES(?,?,?,?)",(name_sql,password_sql, dob_sql, amount_sql,))
-    cursor.fetchone()
     conn.commit()
     conn.close()
+    
     print("ok. done.")
