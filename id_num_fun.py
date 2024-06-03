@@ -27,6 +27,29 @@ def id_num(name):
                 if start == size:
                     break
                 
+            if size > 1:    #if theres more then 1 id, we need more data from users.
+                print("we need more information to find one specific name's id. \nSo, if you want to find the ID you need to give us more info about him.")
+                DateOfBirth = input(f"{name}'s Death Of Birth (YYYY-MM-DD): ")
+                
+                if DateOfBirth == "":
+                    print("You didn't entry the DOB. sorry, we can't help you without this info.")
+                
+                elif DateOfBirth:
+                    #  fetching dob of given name
+                    cursor.execute("select id from customer where name=? and dob = ?",(name,DateOfBirth,))
+                    result_cheak_dob=cursor.fetchall()
+                    
+                    result_cheak_dob_list = []  # creating list of our result.
+                    
+                    for result in result_cheak_dob:
+                        result_cheak_dob_list.append(result[0])   # puting results into this list
+                    
+                    for list_item in result_cheak_dob_list:
+                        print(list_item)    # printing list items.
+                
+                else:
+                    print("Not a vaild birthdate. Or your client didn't opened any account in this bank.")
+                
             conn.close()
         
         else:
