@@ -14,7 +14,7 @@ def id_num(name):
             cursor.execute("SELECT id FROM customer WHERE name = ? ",(name,))
             values = cursor.fetchall()
             
-            ids = []    # collectinh multiple values in tauple
+            ids = []    # collecting multiple values in tauple
             for value in values:
                 ids.append(value[0])
                 
