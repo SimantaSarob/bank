@@ -12,9 +12,7 @@ conn.commit()
 conn.close()
 
 file_name = open("name.txt",'w')
-file_name.write('')
-
 file_password = open("password.txt", 'w')
-file_password.write('')
+file_id = open("id.txt", "w")
 
 print("setup done.")
