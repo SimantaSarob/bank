@@ -1,8 +1,9 @@
 from login_fun import login
 
-def logout(name, password):
+def logout(name, password, id):
     name = ''
     password = ''
-    login(name, password)
+    id = ''
+    login(name, password, id)
     
     

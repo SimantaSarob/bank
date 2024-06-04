@@ -25,7 +25,8 @@ def main():
         if command == "exit" : # exit
             name = ''
             password = ''
-            logout(name , password)
+            id = ''
+            logout(name, password, id)
             break
         
         elif command == "total": # total money
@@ -33,20 +34,21 @@ def main():
         
         elif command == "login": # login and pass encrypt
             
-            logout(name='',password='') #added this line because of, if someone do login and use login command again, his/her previous login details will be eraised.
+            logout(name='',password='', id='') #added this line because of, if someone do login and use login command again, his/her previous login details will be eraised.
             
             name = input("name: ")
+            id = input("user id: ")
             plain_password  = input("password: ")
             password = hashlib.sha256(plain_password.encode()).hexdigest()
             
             conn = sqlite3.connect('bank.db')
             cursor = conn.cursor()  
-            cursor.execute("SELECT id FROM customer WHERE name = ? AND password = ?",(name,password,))
+            cursor.execute("SELECT id FROM customer WHERE name = ? AND password = ? ",(name,password,))
             value = cursor.fetchone()
             
-            if value is not None:
+            if value is not None and int(value[0])==int(id):
                 print("Loged in successful.")
-                login(name,password)
+                login(name,password,id)
             else:
                 print("Name or password is not correct.")
                 
@@ -56,7 +58,8 @@ def main():
         elif command == "logout": #log out 
             name = ''
             password = ''
-            logout(name,password)
+            id = ''
+            logout(name,password,id)
             print("Logout done.")
         
         elif command == "signup": #sign up
