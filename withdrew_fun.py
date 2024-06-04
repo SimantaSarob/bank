@@ -11,8 +11,8 @@ def withdrew(given_amount):
     cursor.execute("SELECT amount FROM customer WHERE name = ? AND password = ?",(name,password,))
     value = cursor.fetchone()
     
-    if int(given_amount) <= value[0]: 
-        withdrew_total = value[0] - int(given_amount)
+    if float(given_amount) <= value[0]: 
+        withdrew_total = value[0] - float(given_amount)
         cursor.execute("UPDATE customer SET amount= ? where name= ? AND password = ?",(withdrew_total, name, password,))
         conn.commit()
         conn.close()

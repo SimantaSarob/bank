@@ -4,7 +4,7 @@ def signup(name, password, dob, amount):
     name_sql = name
     password_sql = password
     dob_sql = dob
-    amount_sql = int(amount)
+    amount_sql = float(amount)
     
     conn = sqlite3.connect('bank.db')
     cursor = conn.cursor()  

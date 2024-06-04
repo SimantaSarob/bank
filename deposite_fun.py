@@ -10,7 +10,7 @@ def deposite(given_amount):
     cursor = conn.cursor()  
     cursor.execute("SELECT amount FROM customer WHERE name = ? AND password = ?",(name,password,))
     value = cursor.fetchone()
-    deposite_total = value[0] + int(given_amount)
+    deposite_total = value[0] + float(given_amount)
     
     cursor.execute("UPDATE customer SET amount= ? where name= ? AND password = ?",(deposite_total, name, password,))
     conn.commit()

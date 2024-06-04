@@ -4,7 +4,7 @@ def send_money(sender_id_txt, reciver_id_txt, amount_send_txt):
 
     sender_id = int(sender_id_txt)
     reciver_id = int(reciver_id_txt)
-    amount_send = int(amount_send_txt)
+    amount_send = float(amount_send_txt)
     
     file_name = open("name.txt", 'r')
     name = file_name.read()
