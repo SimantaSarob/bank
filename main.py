@@ -11,6 +11,7 @@ from withdrew_fun import withdrew
 from id_num_fun import id_num
 from send_money_fun import send_money
 from command_history import command_str
+from login_details_fun import login_details
 
 
 print("for documentation type doc and enter.")
@@ -30,8 +31,16 @@ def main():
             break
         
         elif command == "total": # total money
-            total()
-        
+            file_status = open("status.txt", 'r')
+            active_status = file_status.read()
+            
+            if active_status == "loged in":
+                total()
+                
+            else:
+                  print("Please Login first. If you don't have an account,please signup to creat one.")
+
+    
         elif command == "login": # login and pass encrypt
             
             logout(name='',password='', id='') #added this line because of, if someone do login and use login command again, his/her previous login details will be eraised.
@@ -62,54 +71,93 @@ def main():
             logout(name,password,id)
             print("Logout done.")
         
+        
         elif command == "signup": #sign up
             name = input("Your name: ")
             dob = input("Your date of birth (YYYY-MM-DD): ")
             amount = input("The amount of money you want to keep in the bank: ")
+            email = input("Email: ")
             plain_password  = input("Type your password: ")
             plain_password_again  = input("Type your password again: ")
             
             if plain_password == plain_password_again:
-                password = hashlib.sha256(plain_password.encode()).hexdigest() 
+                password = hashlib.sha256(plain_password.encode()).hexdigest()
+                
+                signup(name, password, dob, amount, email)
+
                 
             else:
                 print("Try again later with 'signup' command.")
                 
-            signup(name, password, dob, amount)
-            
+        
+        
         elif command == "doc": #documentation
             doc()
+      
         
         elif command =="deposite": #deposite
-            given_amount = input("Amount: ")
-            deposite(given_amount)
+            
+            file_status = open("status.txt", 'r')
+            active_status = file_status.read()
+            
+            if active_status == "loged in":
+                given_amount = input("Amount: ")
+                deposite(given_amount)
+                
+            else:
+                print("Please Login first. If you don't have an account, please do signup to create one.")
+
 
         elif command =="withdrew": #withdrew
-            given_amount = input("Amount: ")
-            withdrew(given_amount)
+            file_status = open("status.txt", 'r')
+            active_status = file_status.read()
+            
+            if active_status == "loged in":
+                given_amount = input("Amount: ")
+                withdrew(given_amount)
+                
+            else:
+                print("Please Login first. If you don't have an account,please signup to creat one.")
+ 
         
         elif command == "id":
-            name = input("Name: ")
-            id_num(name) 
+            file_status = open("status.txt", 'r')
+            active_status = file_status.read()
+            
+            if active_status == "loged in":
+                name = input("Name: ")
+                id_num(name)
+                
+            else:
+                print("Please Login first. If you don't have an account,please signup to creat one.")
+    
         
         elif command == "login details":
+            file_status = open("status.txt", 'r')
+            active_status = file_status.read()
             
-            file = open("name.txt",'r')
-            name = file.read()
+            if active_status == "loged in":
+                login_details()
             
-            if name =="":
-                print("Name: Null")    
             else:
-                print(F"Name: {name}")
-                
-            id_num(name)
-        
-        elif command == "send money":
-            sender_id_txt = input("YOUR ID: ")
-            reciver_id_txt = input("RECIVER ID: ")
-            amount_send_txt = input("The amount you want to sent: ")
+                print("Please Login first. If you don't have an account,please signup to creat one.")
             
-            send_money(sender_id_txt, reciver_id_txt, amount_send_txt)
+                
+        elif command == "send money":
+            file_status = open("status.txt", 'r')
+            active_status = file_status.read()
+            
+            if active_status == "loged in":
+                
+                sender_id_txt = input("YOUR ID: ")
+                reciver_id_txt = input("RECIVER ID: ")
+                amount_send_txt = input("The amount you want to sent: ")
+            
+                send_money(sender_id_txt, reciver_id_txt, amount_send_txt)
+                
+            else:
+                print("Please Login first. If you don't have an account,please signup to creat one.")
+    
             
         else:
             print("not valid command. use 'doc' command to see all the valid command(s).")

@@ -1,6 +1,9 @@
 import sqlite3
 
+
+
 def withdrew(given_amount):
+    
     file_name = open("name.txt", 'r') 
     name = file_name.read()
     file_password = open("password.txt", "r") 
@@ -8,6 +11,7 @@ def withdrew(given_amount):
     
     conn = sqlite3.connect('bank.db')
     cursor = conn.cursor()  
+    
     cursor.execute("SELECT amount FROM customer WHERE name = ? AND password = ?",(name,password,))
     value = cursor.fetchone()
     
