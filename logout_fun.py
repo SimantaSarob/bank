@@ -6,4 +6,7 @@ def logout(name, password, id):
     id = ''
     login(name, password, id)
     
+    file_status = open("status.txt", 'w')
+    file_status.write("loged out")
+    
     

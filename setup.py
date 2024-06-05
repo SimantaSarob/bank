@@ -14,5 +14,7 @@ conn.close()
 file_name = open("name.txt",'w')
 file_password = open("password.txt", 'w')
 file_id = open("id.txt", "w")
+file_status = open("status.txt", 'w')
+file_status.write("loged out")
 
 print("setup done.")

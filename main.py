@@ -36,9 +36,9 @@ def main():
             
             logout(name='',password='', id='') #added this line because of, if someone do login and use login command again, his/her previous login details will be eraised.
             
-            name = input("name: ")
-            id = input("user id: ")
-            plain_password  = input("password: ")
+            name = input("Name: ")
+            id = input("User id: ")
+            plain_password  = input("Password: ")
             password = hashlib.sha256(plain_password.encode()).hexdigest()
             
             conn = sqlite3.connect('bank.db')
@@ -50,7 +50,7 @@ def main():
                 print("Loged in successful.")
                 login(name,password,id)
             else:
-                print("Name or password is not correct.")
+                print("Name, password or id is not correct.")
                 
             conn.close()
             
@@ -63,7 +63,7 @@ def main():
             print("Logout done.")
         
         elif command == "signup": #sign up
-            name = input("your name: ")
+            name = input("Your name: ")
             dob = input("Your date of birth (YYYY-MM-DD): ")
             amount = input("The amount of money you want to keep in the bank: ")
             plain_password  = input("Type your password: ")
@@ -112,7 +112,7 @@ def main():
             send_money(sender_id_txt, reciver_id_txt, amount_send_txt)
             
         else:
-            print("not valid command. use 'doc' command to see all the valid command/s.")
+            print("not valid command. use 'doc' command to see all the valid command(s).")
             
         #print("\n")
         
