@@ -19,6 +19,15 @@ def login_details():
     for data in values:
         value = data
     
-    print(f"\nName: {value[1]} \nId: {value[0]} \nAmount: {value[4]} \nDate of Birth: {value[3]} \nEmail: {value[5]} \nAccount Creating Date: {value[6]} \nAccount Creating Time: {value[7]}\n")
+    print(f'''
+       #  Name: {value[1]} 
+       #  Id: {value[0]} 
+       #  Amount: {value[4]} 
+       #  Date of Birth: {value[3]} 
+       #  Email: {value[5]} 
+       #  Account Creating Date: {value[6]} 
+       #  Account Creating Time: {value[7]}
+           ''')
     
     conn.close()
+
