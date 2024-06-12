@@ -1,6 +1,7 @@
 import hashlib
 import sqlite3
 from time import sleep
+from text_file_reset import reset_text_files
 from login_fun import login
 from logout_fun import logout
 from signup_fun import signup
@@ -11,15 +12,15 @@ from withdrew_fun import withdrew
 from id_num_fun import id_num
 from send_money_fun import send_money
 from command_history import command_str
-from login_details_fun import login_details
+from account_details_fun import account_details
 
-
+reset_text_files()
 print("for documentation type doc and enter.")
 
 def main():
     while True:
         command = input("Bank > ")
-        #print("\n")
+
         command_str(command)
         sleep(0.1)
         
@@ -52,10 +53,10 @@ def main():
             
             conn = sqlite3.connect('bank.db')
             cursor = conn.cursor()  
-            cursor.execute("SELECT id FROM customer WHERE name = ? AND password = ? ",(name,password,))
+            cursor.execute("SELECT password FROM customer WHERE name = ? AND id = ? ",(name,id,))
             value = cursor.fetchone()
             
-            if value is not None and int(value[0])==int(id):
+            if value is not None and str(value[0])==str(password):
                 print("Loged in successful.")
                 login(name,password,id)
             else:
@@ -132,12 +133,12 @@ def main():
                 print("Please Login first. If you don't have an account,please signup to creat one.")
     
         
-        elif command == "login details":
+        elif command == "account details":
             file_status = open("status.txt", 'r')
             active_status = file_status.read()
             
             if active_status == "loged in":
-                login_details()
+                account_details()
             
             else:
                 print("Please Login first. If you don't have an account,please signup to creat one.")
@@ -162,6 +163,5 @@ def main():
         else:
             print("not valid command. use 'doc' command to see all the valid command(s).")
             
-        #print("\n")
         
 main()

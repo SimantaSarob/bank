@@ -1,6 +1,6 @@
 import sqlite3
 
-def login_details():
+def account_details():
     fileName = open("name.txt", 'r')
     name_sql = fileName.read()
     filePassword = open("password.txt",'r')

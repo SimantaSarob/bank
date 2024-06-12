@@ -1,12 +1,13 @@
-import select
 import sqlite3
 from datetime import datetime
 from time import strftime
-from token import NAME
+from id_num_fun import id_num
+from user_table_fun import make_users_table_name
+from login_fun import login
 
 ####################################
 #                                  #
-#   full loggic in main.py file.   #
+#   full logic in main.py file.    #
 #                                  #
 ####################################
 
@@ -18,7 +19,6 @@ def signup(name, password, dob, amount, email):
     email_sql = email
     
     
-    
     time = datetime.now()
     date_now = time.date()
     time_now = time.time()
@@ -28,17 +28,19 @@ def signup(name, password, dob, amount, email):
     
     cursor.execute("INSERT INTO customer (name,password,dob,amount,account_creating_date,account_creating_time,email) VALUES(?,?,?,?,?,?,?)", ( name_sql , password_sql , dob_sql , amount_sql , date_now.strftime("%Y-%m-%d") , time_now.strftime("%H:%M:%S") , email_sql ,))
     conn.commit()
+    conn.close()
+    showing_data_for_login(name,password,email)  #sending our data showing_data_for_login function to show the users to remember data for login.
     
-    cursor.execute("SELECT id FROM customer WHERE name = ? and email = ? values(?,?)", (name_sql,email_sql,))
-    alloted_id = cursor.fetchone()
+
+def showing_data_for_login(name, password, email):
     
-    users_alloted_id = alloted_id[0] # for easy development
-    '''
+    # Never use this function anywhere else
     
-    
-    # creating users personal table's name_variable where we can track him. 
-    users_table_name = f"name:{name_sql} id:{users_alloted_id[0]}"
-    '''
+    conn = sqlite3.connect("bank.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT id FROM customer WHERE name = ? AND email = ?",(name,email,))
+    id_num = cursor.fetchone()
+    conn.commit()
     conn.close()
     
     text = f'''
@@ -46,10 +48,15 @@ def signup(name, password, dob, amount, email):
     #   YOU NEED TO REMEMBER THIS DATA:
     #
     #   NAME     : {name}
-    #   ID       : {users_alloted_id}
+    #   ID       : {id_num[0]}
     #   PASSWORD : you know that.
     #   
-    #   this data will halp you to interact with your account.
+    #   this data will help you to interact with your account.
     ----------------------------------------------------------------------------------
     '''
     print(text)
+    
+    login(name, password, id = str(id_num[0]))
+    make_users_table_name(name, id = int(id_num[0]))
+    
+    
