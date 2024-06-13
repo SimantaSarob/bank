@@ -5,7 +5,7 @@ def make_users_table_name(name, id):
     
     name_mod = name.replace(" ","_")
     
-    users_table_name = f"name_{name_mod}_id_{id}"
+    users_table_name = f"{name_mod}_id_{id}"
     file = open("loged-in_users_table_name.txt","w")
     file.write(users_table_name)
     
