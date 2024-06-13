@@ -10,10 +10,10 @@ def command_str(command):
     read_id = file_id.read()
     
     if read_name == '' and read_id == '':
-        name_login = "unknown user"
+        name_login = "default"
         id_login = 0
     elif read_name == '':
-        name_login = "unknown user"
+        name_login = "default"
     elif read_id == '':
         read_id = 0
     else:
