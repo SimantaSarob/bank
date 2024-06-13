@@ -49,11 +49,11 @@ def send_money(sender_id_txt, reciver_id_txt, amount_send_txt):
                 file_name_ = open("name.txt", 'r')
                 name_ = file_name_.read()
                 
-                cursor.execute("SELECT name FROM customer where  name = ?", (reciver_id))
+                cursor.execute("SELECT name FROM customer WHERE id = ?", (int(reciver_id),))
                 receivers_name = cursor.fetchone()
-                
-                
-                send_money_history(id = int(login_id) , name = name_ , amount = int(sender_old_amount) , receiver_amount = int(new_amount) , receiver_id = int(result_cheak[0]) , receiver_name = str(receivers_name[0])  , new_amount = int(sender_new_amount))
+
+
+                send_money_history(id = int(login_id[0]) , name = name_ , amount = int(sender_old_amount[0]) , receiver_amount = int(amount_send) , receiver_id = int(result_cheak[0]) , receiver_name = receivers_name[0]  , new_amount = int(sender_new_amount))
                 # done send money history keeping
                 
             else:
