@@ -1,4 +1,5 @@
 import sqlite3
+from users_history import send_money_history
 
 def send_money(sender_id_txt, reciver_id_txt, amount_send_txt):
 
@@ -19,9 +20,9 @@ def send_money(sender_id_txt, reciver_id_txt, amount_send_txt):
     cursor.execute("SELECT id FROM customer WHERE name = ? and password = ?",(name, password,))
     login_id = cursor.fetchone()
     
-    if sender_id == login_id[0] :
-        cursor.execute("select id from customer where id = ?",(reciver_id,))
-        result_cheak = cursor.fetchone() #cheaking sender is the loginer or not.
+    if sender_id == login_id[0] : #cheaking sender is the loginer or not.
+        cursor.execute("select id from customer where id = ?",(reciver_id,)) 
+        result_cheak = cursor.fetchone() # reciever id
         
         if result_cheak[0] == reciver_id:
             
@@ -42,7 +43,18 @@ def send_money(sender_id_txt, reciver_id_txt, amount_send_txt):
                 conn.commit() # updating sender amount
                 
                 print("send done.")
-                conn.close()
+                
+                # start send money history keeping
+                 
+                file_name_ = open("name.txt", 'r')
+                name_ = file_name_.read()
+                
+                cursor.execute("SELECT name FROM customer where  name = ?", (reciver_id))
+                receivers_name = cursor.fetchone()
+                
+                
+                send_money_history(id = int(login_id) , name = name_ , amount = int(sender_old_amount) , receiver_amount = int(new_amount) , receiver_id = int(result_cheak[0]) , receiver_name = str(receivers_name[0])  , new_amount = int(sender_new_amount))
+                # done send money history keeping
                 
             else:
                 print("not enougn money in your bank acount")
