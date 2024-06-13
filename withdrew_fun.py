@@ -1,5 +1,7 @@
 import sqlite3
 
+from users_history import withdrew_history
+
 
 
 def withdrew(given_amount):
@@ -21,6 +23,21 @@ def withdrew(given_amount):
         conn.commit()
         conn.close()
         print("withdrew done.")
+        
+        # start withdrew history keeping
+        file_id = open("id.txt", "r")
+        id = file_id.read()
+        deposite_amount = given_amount
+        amount = float(value[0])
+        withdrew_amount = given_amount
+        new_amount = withdrew_total
+        
+        withdrew_history(id , name , amount , withdrew_amount , new_amount)
+        # done withdrew history keeping
+        
+        
+        
+        
     else:
         print(f"you don't have that much money in your account to withdrew {given_amount}. you have only {value[0]} money left. ")
         conn.close()
