@@ -15,7 +15,7 @@ conn.commit()
 
 
 # will keep every deposite command from every user
-cursor.execute("CREATE TABLE IF NOT EXISTS deposite_history (event_no INTEGER PRIMARY KEY AUTOINCREMENT , date DATETIME , time DATETIME , id INTEGER , name TEXT , amount INTEGER , deposit_amount INTEGER , new_amount INTEGR )")
+cursor.execute("CREATE TABLE IF NOT EXISTS deposite_history (event_no INTEGER PRIMARY KEY AUTOINCREMENT , date DATETIME , time DATETIME , id INTEGER , name TEXT , amount INTEGER , deposite_amount INTEGER , new_amount INTEGR )")
 conn.commit()
 
 
