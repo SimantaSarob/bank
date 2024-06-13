@@ -21,8 +21,8 @@ def login(name, password, id):
     
     
     # creating users personal table's name_variable where we can track him. 
-    users_table_name = f"name:{name} id:{id}"
-    table_name = open("loged-in_users_table_name.txt",'w')
-    table_name.write(users_table_name)
-    
+    name_mod = name.replace(" ","_")
+    users_table_name = f"{name_mod}_id_{id}"
+    file = open("loged-in_users_table_name.txt","w")
+    file.write(users_table_name)
     
