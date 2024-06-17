@@ -1,4 +1,6 @@
 import sqlite3
+from  text_file_reset import reset_text_files
+    
 
 conn = sqlite3.connect("bank.db")
 cursor = conn.cursor()
@@ -30,12 +32,6 @@ cursor.execute("CREATE TABLE IF NOT EXISTS send_money_history (event_no INTEGER 
 
 conn.close()
 
-file_name = open("name.txt",'w')
-file_password = open("password.txt", 'w')
-file_id = open("id.txt", "w")
-file_user_table = open("loged-in_users_table_name.txt",'w')
-file_user_table.write("default")
-file_status = open("status.txt", 'w')
-file_status.write("loged out")
+reset_text_files()
 
 print("Your setup is done.")
