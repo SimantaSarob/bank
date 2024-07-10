@@ -25,10 +25,7 @@ def main():
         sleep(0.1)
         
         if command == "exit" : # exit
-            name = ''
-            password = ''
-            id = ''
-            logout(name, password, id)
+            reset_text_files()
             break
         
         elif command == "total": # total money
@@ -41,7 +38,7 @@ def main():
             else:
                   print("Please Login first. If you don't have an account,please signup to creat one.")
 
-    
+
         elif command == "login": # login and pass encrypt
             
             logout(name='',password='', id='') #added this line because of, if someone do login and use login command again, his/her previous login details will be eraised.
@@ -66,10 +63,7 @@ def main():
             
                 
         elif command == "logout": #log out 
-            name = ''
-            password = ''
-            id = ''
-            logout(name,password,id)
+            reset_text_files()
             print("Logout done.")
         
         
