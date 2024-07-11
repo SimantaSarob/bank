@@ -41,25 +41,30 @@ def main():
 
         elif command == "login": # login and pass encrypt
             
-            logout(name='',password='', id='') #added this line because of, if someone do login and use login command again, his/her previous login details will be eraised.
+            reset_text_files()
             
             name = input("Name: ")
             id = input("User id: ")
             plain_password  = input("Password: ")
-            password = hashlib.sha256(plain_password.encode()).hexdigest()
-            
-            conn = sqlite3.connect('bank.db')
-            cursor = conn.cursor()  
-            cursor.execute("SELECT password FROM customer WHERE name = ? AND id = ? ",(name,id,))
-            value = cursor.fetchone()
-            
-            if value is not None and str(value[0])==str(password):
-                print("Loged in successful.")
-                login(name,password,id)
-            else:
-                print("Name, password or id is not correct.")
+            empty = [" ",""]
+            if name in empty or id in empty or plain_password in empty: # this will cheak if user's input is valid or not.
+                print("You didn't filled one or more inforamtion field. Please Try Again Later.")
                 
-            conn.close()
+            else:               
+                password = hashlib.sha256(plain_password.encode()).hexdigest()
+                
+                conn = sqlite3.connect('bank.db')
+                cursor = conn.cursor()  
+                cursor.execute("SELECT password FROM customer WHERE name = ? AND id = ? ",(name,id,))
+                value = cursor.fetchone()
+                
+                if value is not None and str(value[0])==str(password): # login confermation.
+                    print("Loged in successful.")
+                    login(name,password,id)
+                    
+                    conn.close()
+                else:
+                    print("Name, password or id is not valid. Please try again later.")
             
                 
         elif command == "logout": #log out 
