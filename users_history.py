@@ -1,15 +1,11 @@
 import sqlite3
 from datetime import datetime
 
-time_ = datetime.now()
-
-time = time_.strftime("%H:%M:%S")
-date = time_.strftime("%Y-%m-%d")
-
-
-
 
 def deposite_history(id , name , amount , deposite_amount , new_amount):
+    time_ = datetime.now()
+    time = time_.strftime("%H:%M:%S")
+    date = time_.strftime("%Y-%m-%d")
     conn = sqlite3.connect("bank.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO deposite_history (date , time , id , name , amount , deposite_amount , new_amount) VALUES (?,?,?,?,?,?,?)",(date , time , id , name , amount , deposite_amount , new_amount ,))
@@ -17,8 +13,10 @@ def deposite_history(id , name , amount , deposite_amount , new_amount):
     conn.close()
 
 
-
 def withdrew_history(id , name , amount , withdrew_amount , new_amount):
+    time_ = datetime.now()
+    time = time_.strftime("%H:%M:%S")
+    date = time_.strftime("%Y-%m-%d")
     conn = sqlite3.connect("bank.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO withdrew_history (date , time , id , name , amount , withdrew_amount , new_amount) VALUES (?,?,?,?,?,?,?)",(date , time , id , name , amount , withdrew_amount , new_amount ,))
@@ -26,8 +24,10 @@ def withdrew_history(id , name , amount , withdrew_amount , new_amount):
     conn.close()
 
 
-
 def send_money_history(id , name , amount , receiver_amount , receiver_id , receiver_name , new_amount):
+    time_ = datetime.now()
+    time = time_.strftime("%H:%M:%S")
+    date = time_.strftime("%Y-%m-%d")
     conn = sqlite3.connect("bank.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO send_money_history (date , time , id , name , amount , receiver_amount , receiver_id , receiver_name , new_amount) VALUES (?,?,?,?,?,?,?,?,?)", (date , time , id , name , amount , receiver_amount , receiver_id , receiver_name , new_amount ,))
@@ -35,8 +35,10 @@ def send_money_history(id , name , amount , receiver_amount , receiver_id , rece
     conn.close()
 
 
-
 def others_history():
+    time_ = datetime.now()
+    time = time_.strftime("%H:%M:%S")
+    date = time_.strftime("%Y-%m-%d")
     conn = sqlite3.connect("bank.db")
     cursor = conn.cursor()
     
