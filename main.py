@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import hashlib
 import sqlite3
 from time import sleep
