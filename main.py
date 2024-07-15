@@ -41,36 +41,54 @@ def main():
 
 
         elif command == "login": # login and pass encrypt
-            
-            reset_text_files()
-            
-            name = input("Name: ")
-            id = input("User id: ")
-            plain_password  = input("Password: ")
-            empty = [" ",""]
-            if name in empty or id in empty or plain_password in empty: # this will cheak if user's input is valid or not.
-                print("You didn't filled one or more inforamtion field. Please Try Again Later.")
+            file_ = open("status.txt","r")
+            status = file_.read()
+
+            if status == "loged in": # cheaking if someone is loged in or not.
+                name_ = open("name.txt","r")
+                name = name_.read()
+                id_ = open("id.txt","r")
+                id = id_.read()
                 
-            else:               
-                password = hashlib.sha256(plain_password.encode()).hexdigest()
+                print(f"You are curently loged in as {name} and ID:{id}. Please do logout first.") # giving the current loged in account details
                 
-                conn = sqlite3.connect('bank.db')
-                cursor = conn.cursor()  
-                cursor.execute("SELECT password FROM customer WHERE name = ? AND id = ? ",(name,id,))
-                value = cursor.fetchone()
+            else: # if no one in loged in
+                name = input("Name: ")
+                id = input("User id: ")
+                plain_password  = input("Password: ")
                 
-                if value is not None and str(value[0])==str(password): # login confermation.
-                    print("Loged in successful.")
-                    login(name,password,id)
+                empty = [" ",""]
+                
+                if name in empty or id in empty or plain_password in empty: # this will cheak if user's input is valid or not.
+                    print("You didn't filled one or more inforamtion field. Please Try Again Later.")
                     
-                    conn.close()
-                else:
-                    print("Name, password or id is not valid. Please try again later.")
+                else: # if every inputed data is acceptable data
+                    password = hashlib.sha256(plain_password.encode()).hexdigest()
+                    
+                    conn = sqlite3.connect('bank.db')
+                    cursor = conn.cursor()  
+                    cursor.execute("SELECT password FROM customer WHERE name = ? AND id = ? ",(name,id,))
+                    value = cursor.fetchone()
+                    
+                    if value is not None and str(value[0])==str(password): # login confermation.
+                        print("Loged in successful.")
+                        login(name,password,id)
+                        
+                        conn.close()
+                    else: # given data in not in db.
+                        print("Name, password or id is not valid. Please try again later.")
             
                 
         elif command == "logout": #log out 
-            reset_text_files()
-            print("Logout done.")
+            file_ = open("status.txt","r")
+            status = file_.read()
+            
+            if status == "loged out":
+                print("You didn't loged in yet.")
+
+            else:
+                reset_text_files()
+                print("Logout done.")
         
         
         elif command == "signup": #sign up
@@ -118,7 +136,7 @@ def main():
                 withdrew(given_amount)
                 
             else:
-                print("Please Login first. If you don't have an account,please signup to creat one.")
+                print("Please Login first. If you don't have an account,please signup to create one.")
  
         
         elif command == "id":
@@ -130,7 +148,7 @@ def main():
                 id_num(name)
                 
             else:
-                print("Please Login first. If you don't have an account,please signup to creat one.")
+                print("Please Login first. If you don't have an account,please signup to create one.")
     
         
         elif command == "account details":
@@ -141,7 +159,7 @@ def main():
                 account_details()
             
             else:
-                print("Please Login first. If you don't have an account,please signup to creat one.")
+                print("Please Login first. If you don't have an account, please signup to create one.")
             
                 
         elif command == "send money":
@@ -157,7 +175,7 @@ def main():
                 send_money(sender_id_txt, reciver_id_txt, amount_send_txt)
                 
             else:
-                print("Please Login first. If you don't have an account,please signup to creat one.")
+                print("Please Login first. If you don't have an account, please signup to create one.")
     
             
         else:
