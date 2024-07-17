@@ -16,8 +16,7 @@ from command_history import command_str
 from account_details_fun import account_details
 
 reset_text_files()
-print("for documentation type doc and enter.")
-
+doc()
 def main():
     while True:
         command = input("Bank > ")
