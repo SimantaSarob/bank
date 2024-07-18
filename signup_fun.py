@@ -1,9 +1,9 @@
 import sqlite3
 from datetime import datetime
 from time import strftime
-from id_num_fun import id_num
 from user_table_fun import make_users_table_name
 from login_fun import login
+from clear_fun import clear
 
 ####################################
 #                                  #
@@ -42,6 +42,8 @@ def showing_data_for_login(name, password, email):
     id_num = cursor.fetchone()
     conn.commit()
     conn.close()
+    
+    clear()
     
     text = f'''
     ----------------------------------------------------------------------------------
