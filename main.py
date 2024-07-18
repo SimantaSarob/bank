@@ -177,10 +177,14 @@ def main():
                 
             else:
                 print("Please Login first. If you don't have an account, please signup to create one.")
-    
+
+        
+        elif command == "clear": # clear the shell.
+            clear()
+
             
         else:
-            print("not valid command. use 'doc' command to see all the valid command(s).")
+            print("Not valid command. Use 'doc' command to see all the valid command(s).")
             
         
 main()
