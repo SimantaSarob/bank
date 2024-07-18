@@ -7,7 +7,7 @@ cursor = conn.cursor()
 
 
 # main table where they will keep all user info
-cursor.execute("CREATE TABLE IF NOT EXISTS customer (id INTEGER, name TEXT, password TEXT, dob DATETIME, amount INTEGER,  email TEXT NOT NULL UNIQUE, account_creating_date DATETIME , account_creating_time	DATETIME , PRIMARY KEY(id AUTOINCREMENT))")
+cursor.execute("CREATE TABLE IF NOT EXISTS customer (id INTEGER, name TEXT, password TEXT, dob DATETIME, amount INTEGER,  email TEXT NOT NULL UNIQUE, account_creating_date DATETIME , account_creating_time DATETIME , last_login_datetime DATETIME , PRIMARY KEY(id AUTOINCREMENT))")
 conn.commit()
 
 
