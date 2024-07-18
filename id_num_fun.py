@@ -7,7 +7,7 @@ def id_num(name):
     cursor.execute("SELECT COUNT(*) FROM customer WHERE name = ?",(name,))
     result = cursor.fetchone()
     if name == "":
-        print("id: Null")
+        print("id: Null \nNo Name Entered.")
         
     else:
         if result[0]>0:
