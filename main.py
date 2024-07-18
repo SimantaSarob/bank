@@ -14,6 +14,7 @@ from id_num_fun import id_num
 from send_money_fun import send_money
 from command_history import command_str
 from account_details_fun import account_details
+from clear_fun import clear
 
 reset_text_files()
 doc()
@@ -70,6 +71,7 @@ def main():
                     value = cursor.fetchone()
                     
                     if value is not None and str(value[0])==str(password): # login confermation.
+                        clear() # clearing the shell to ensure no one sees the plain password which is entered.
                         print("Loged in successful.")
                         login(name,password,id)
                         
