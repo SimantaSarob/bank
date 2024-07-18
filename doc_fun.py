@@ -1,5 +1,5 @@
 def doc():
-    print('''
+    print(f'''
 +------------------------------------------------------------------------------------+
 | Hello! It's a demo banking system which is made and maintain by Simanta Saha Sarob.|
 +---------------+--------------------------------------------------------------------+
@@ -15,5 +15,7 @@ def doc():
 | id            | Find someones name through different informations.                 |
 | login details | Show everything about account.                                     |
 | send money    | Send money to Different users. (Need to know recievers ID number.) |
+| signup        | Create an account. (Need to fill some personal data)               |
+| clear         | Clear the interface.                                               |
 +---------------+--------------------------------------------------------------------+
 ''')
