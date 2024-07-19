@@ -1,5 +1,5 @@
 import time
-from admin_doc import admin_doc
+from doc_fun import admin_doc
 import sqlite3
 from clear_fun import clear
 
