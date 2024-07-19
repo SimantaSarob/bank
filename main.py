@@ -93,22 +93,28 @@ def main():
         
         
         elif command == "signup": #sign up
-            name = input("Your name: ")
-            dob = input("Your date of birth (YYYY-MM-DD): ")
-            amount = input("The amount of money you want to keep in the bank: ")
-            email = input("Email: ")
-            plain_password  = input("Type your password: ")
-            plain_password_again  = input("Type your password again: ")
+            file_ = open("status.txt","r")
+            status = file_.read()
             
-            if plain_password == plain_password_again:
-                password = hashlib.sha256(plain_password.encode()).hexdigest()
-                
-                signup(name, password, dob, amount, email)
-
-                
+            if status == "loged in":
+                print("Please log out first to creat New Account.")
             else:
-                print("Try again later with 'signup' command.")
+                name = input("Your name: ")
+                dob = input("Your date of birth (YYYY-MM-DD): ")
+                amount = input("The amount of money you want to keep in the bank: ")
+                email = input("Email: ")
+                plain_password  = input("Type your password: ")
+                plain_password_again  = input("Type your password again: ")
                 
+                if plain_password == plain_password_again:
+                    password = hashlib.sha256(plain_password.encode()).hexdigest()
+                    
+                    signup(name, password, dob, amount, email)
+
+                    
+                else:
+                    print("Password didnt matched. \nTry again with 'signup' command.")
+                    
         
         
         elif command == "doc": #documentation
