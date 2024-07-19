@@ -14,6 +14,7 @@ from id_num_fun import id_num
 from send_money_fun import send_money
 from command_history import command_str
 from account_details_fun import account_details
+import admin_
 from clear_fun import clear
 
 reset_text_files()
@@ -188,9 +189,39 @@ def main():
         elif command == "clear": # clear the shell.
             clear()
 
+        elif command == "admin":
+            file_ = open("name.txt","r")
+            name = file_.read()
+            file__ = open("id.txt")
+            id = file__.read()
+            file_status = open("status.txt")
+            status = file_status.read()
             
+            if status == "loged out":
+                print("Please login first")
+            else:
+                if name == "Admin" and id == "1":
+                    passwd_input = input("Admin Password:")
+                    password_hash = hashlib.sha256(passwd_input.encode()).hexdigest()
+                    
+                    conn = sqlite3.connect("bank.db")
+                    cursor = conn.cursor()
+                    
+                    cursor.execute("SELECT password FROM customer WHERE name = 'Admin' and id = 1")
+                    password_from_db = cursor.fetchone()
+                    
+                    if password_from_db[0] == password_hash:
+                        admin_.admin()
+                        
+                    else:
+                        print("Admin Password Didn't Matched.")
+                    
+                else:
+                    print("Login as Admin.")
+                
+        
         else:
             print("Not valid command. Use 'doc' command to see all the valid command(s).")
             
-        
+
 main()
