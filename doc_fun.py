@@ -6,6 +6,7 @@ def doc():
 | Command       | Discripytion                                                       |
 +---------------+--------------------------------------------------------------------+
 | login         | Log in your account. Give your account name, ID and password.      |
+| admin         | Total access of Bank. (Under DEvelopment.)                         |
 | logout        | Log out from your profile.                                         |
 | exit          | Will exit the code.                                                |
 | doc           | For documentation.                                                 |
