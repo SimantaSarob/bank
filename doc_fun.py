@@ -20,3 +20,9 @@ def doc():
 | clear         | Clear the interface.                                               |
 +---------------+--------------------------------------------------------------------+
 ''')
+
+
+def admin_doc():
+    print('''
+          this is admin portal documentation. it's under development.
+          ''')
