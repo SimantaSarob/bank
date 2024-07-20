@@ -24,5 +24,18 @@ def doc():
 
 def admin_doc():
     print('''
-          this is admin portal documentation. it's under development.
++----------+--------------------------------------------------------------+
+|  Command |                         Discription                          |
+|----------|--------------------------------------------------------------+
+| system   | Will give you system access. (NOT RECOMENDED) (Only in linux)|
+| db       | Direct access to the Main Database (bank.db). (WARNING: Do   |
+|          | not use this command untill you know what you are doing.)    |
+| help     | Will show you this message.                                  |
+| doc      | Will show you this message.                                  |
+| history  | Will Show You All Data From History Table.                   |
+| clear    | Will clear the screen.                                       |
+| exit     | Will exit from `Admin` access  and return Back to normal     |
+|          | user access.                                                 |
+| customer | Will show you all the data of Customers aka users.           |
++----------+--------------------------------------------------------------+
           ''')
