@@ -27,6 +27,7 @@ def account_details():
        #  Email: {value[5]} 
        #  Account Creating Date: {value[6]} 
        #  Account Creating Time: {value[7]}
+       #  Last Login Time : {value[8]}
            ''')
     
     conn.close()
