@@ -74,7 +74,7 @@ def main():
                     
                     if value is not None and str(value[0])==str(password): # login confermation.
                         clear() # clearing the shell to ensure no one sees the plain password which is entered.
-                        print("Loged in successful.")
+                        print(f"Loged in as {name} successful.")
                         login(name,password,id)
                         
                         conn.close()
