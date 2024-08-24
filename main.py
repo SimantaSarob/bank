@@ -21,7 +21,8 @@ reset_text_files()
 doc()
 def main():
     while True:
-        command = input("Bank > ")
+        cmd = input("Bank > ")
+        command = cmd.lower()
 
         command_str(command)
         sleep(0.1)
